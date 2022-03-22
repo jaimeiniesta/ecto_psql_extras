@@ -28,7 +28,9 @@ defmodule EctoPSQLExtras.DiagnoseLogic do
         ]
       }
     rescue
-      _ ->
+      error ->
+        IO.inspect(error)
+
         %{
           columns: ["ok", "check_name", "message"],
           rows: [
