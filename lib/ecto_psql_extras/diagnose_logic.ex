@@ -17,19 +17,19 @@ defmodule EctoPSQLExtras.DiagnoseLogic do
       %{
         columns: ["ok", "check_name", "message"],
         rows: [
-          table_cache_hit(repo),
-          index_cache_hit(repo),
-          unused_indexes(repo),
-          null_indexes(repo),
-          bloat(repo),
-          duplicate_indexes(repo),
-          outliers(repo),
-          ssl_used(repo),
+          table_cache_hit(repo) |> IO.inspect(label: "table_cache_hit"),
+          index_cache_hit(repo) |> IO.inspect(label: "index_cache_hit"),
+          unused_indexes(repo) |> IO.inspect(label: "unused_indexes"),
+          null_indexes(repo) |> IO.inspect(label: "null_indexes"),
+          bloat(repo) |> IO.inspect(label: "bloat"),
+          duplicate_indexes(repo) |> IO.inspect(label: "duplicate_indexes"),
+          outliers(repo) |> IO.inspect(label: "outliers"),
+          ssl_used(repo) |> IO.inspect(label: "ssl_used"),
         ]
       }
     rescue
       error ->
-        IO.inspect(error)
+        IO.inspect(error, label: "rescued")
 
         %{
           columns: ["ok", "check_name", "message"],
